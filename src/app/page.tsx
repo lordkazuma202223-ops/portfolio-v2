@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Github, Linkedin, Mail, ExternalLink, Code2, Database, Layout, Zap, ChevronDown } from "lucide-react"
-import "@/lib/animations"
+import ChatWidget from "@/components/ChatWidget"
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false)
@@ -80,7 +80,7 @@ export default function Home() {
       <div className="noise-texture"></div>
 
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-black/95 backdrop-blur-md py-4" : "py-6"}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? "bg-black/95 backdrop-blur-md py-4" : "py-6"}`}>
         <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
           <span className="text-2xl font-bold text-purple-500">Portfolio</span>
           <div className="hidden md:flex gap-8">
@@ -91,6 +91,9 @@ export default function Home() {
           </div>
         </div>
       </nav>
+
+      {/* Chat Widget */}
+      <ChatWidget />
 
       {/* Scroll Progress Bar */}
       <div className="scroll-progress"></div>
