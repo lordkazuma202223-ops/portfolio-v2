@@ -20,6 +20,11 @@
   --color-border: 0 0% 89.8%;
   --color-input: 0 0% 89.8%;
   --color-ring: 265 83% 67%;
+  --color-chart-1: 12 76% 61%;
+  --color-chart-2: 173 58% 39%;
+  --color-chart-3: 197 37% 24%;
+  --color-chart-4: 43 74% 66%;
+  --color-chart-5: 27 87% 67%;
   --radius: 0.5rem;
 }
 
@@ -44,6 +49,11 @@
     --color-border: 0 0% 14.9%;
     --color-input: 0 0% 14.9%;
     --color-ring: 265 83% 67%;
+    --color-chart-1: 220 70% 50%;
+    --color-chart-2: 160 60% 45%;
+    --color-chart-3: 30 80% 55%;
+    --color-chart-4: 280 65% 60%;
+    --color-chart-5: 340 75% 55%;
   }
 }
 
@@ -60,7 +70,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -10;
   background: linear-gradient(-45deg,
     #0a0a0a 0%,
     #1a0a0a 25%,
@@ -84,7 +94,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -8;
   background:
     radial-gradient(at 40% 40%, rgba(155, 89, 182, 0.2) 0%, transparent 50%),
     radial-gradient(at 60% 60%, rgba(155, 89, 182, 0.15) 0%, transparent 50%),
@@ -106,18 +116,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -5;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .particle {
   position: absolute;
   border-radius: 50%;
-  background: rgba(155, 89, 182, 0.1);
-  animation: float 20s ease-in-out infinite;
+  background: rgba(155, 89, 182, 0.4);
+  animation: floatParticle 20s ease-in-out infinite;
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
 }
 
-@keyframes float {
+@keyframes floatParticle {
   0%, 100% { transform: translate(0, 0); }
   25% { transform: translate(10px, -15px); }
   50% { transform: translate(-5px, 10px); }
@@ -130,15 +144,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  background: radial-gradient(circle at 50% 50%, rgba(155, 89, 182, 0.08) 0%, transparent 70%);
+  z-index: -3;
+  background: radial-gradient(circle at 50% 50%, rgba(155, 89, 182, 0.1) 0%, transparent 70%);
   filter: blur(60px);
   animation: aurora 10s ease-in-out infinite alternate;
 }
 
 @keyframes aurora {
-  0% { opacity: 0.5; }
-  100% { opacity: 0.8; }
+  0% { opacity: 0.4; }
+  100% { opacity: 0.6; }
 }
 
 .noise-texture {

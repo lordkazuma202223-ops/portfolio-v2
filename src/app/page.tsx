@@ -45,22 +45,34 @@ export default function Home() {
     }
   ]
 
+  // Generate random positions for particles
+  const particles = [...Array(50)].map((_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: 10 + Math.random() * 20,
+    duration: 15 + Math.random() * 15,
+    delay: Math.random() * 5
+  }))
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white relative">
       {/* Background Animations */}
       <div className="background-gradient"></div>
       <div className="mesh-gradient"></div>
       <div className="aurora-effect"></div>
       <div className="floating-particles">
-        {[...Array(30)].map((_, i) => (
+        {particles.map((particle) => (
           <div
-            key={i}
-            className="particle"
+            key={particle.id}
+            className="article"
             style={{
-              position: 'absolute',
-              borderRadius: '50%',
-              background: 'rgba(155, 89, 182, 0.3)',
-              animation: `float ${15 + Math.random() * 10}s ease-in-out infinite`
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animation: `floatParticle ${particle.duration}s ease-in-out infinite`,
+              animationDelay: `${particle.delay}s`
             }}
           />
         ))}
@@ -119,7 +131,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="bg-gradient-to-br from-purple-900/30 to-purple-600/10 p-8 rounded-2xl border border-purple-500/20" data-animate="fade-left">
               <p className="text-lg text-gray-300 leading-relaxed">
-                I'm a passionate full-stack developer with expertise in building modern web applications. I specialize in Next.js, React, TypeScript, and creating AI-powered solutions.
+                I'm a passionate full-stack developer with expertise in building modern web applications. I specialize in Next.js, React, TypeScript and creating AI-powered solutions.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed mt-4">
                 Currently exploring the intersection of AI agents and web development, building tools that make development more efficient and enjoyable.
