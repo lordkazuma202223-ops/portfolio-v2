@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Github, Linkedin, Mail, ExternalLink, Code2, Database, Layout, Zap, ChevronDown } from "lucide-react"
+import "@/lib/animations"
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false)
@@ -46,6 +47,26 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Background Animations */}
+      <div className="background-gradient"></div>
+      <div className="mesh-gradient"></div>
+      <div className="aurora-effect"></div>
+      <div className="floating-particles">
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="particle"
+            style={{
+              position: 'absolute',
+              borderRadius: '50%',
+              background: 'rgba(155, 89, 182, 0.3)',
+              animation: `float ${15 + Math.random() * 10}s ease-in-out infinite`
+            }}
+          />
+        ))}
+      </div>
+      <div className="noise-texture"></div>
+
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-black/95 backdrop-blur-md py-4" : "py-6"}`}>
         <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
@@ -59,21 +80,23 @@ export default function Home() {
         </div>
       </nav>
 
+      {/* Scroll Progress Bar */}
+      <div className="scroll-progress"></div>
+
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-black"></div>
         <div className="relative z-10 text-center px-6 max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6" data-animate="fade-up">
             <span className="text-white">Hi, I'm </span>
             <span className="text-purple-500">Lofi</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-400 mb-8">
+          <p className="text-xl md:text-2xl text-gray-400 mb-8" data-animate="fade-up">
             Full-Stack Developer & AI Enthusiast
           </p>
-          <p className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto" data-animate="fade-up">
             Building innovative web applications and AI-powered solutions. Passionate about clean code, modern technologies, and creating impactful digital experiences.
           </p>
-          <div className="flex gap-4 justify-center flex-wrap">
+          <div className="flex gap-4 justify-center flex-wrap" data-animate="fade-up">
             <button onClick={() => scrollToSection("projects")} className="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium transition-colors">
               View My Work
             </button>
@@ -94,7 +117,7 @@ export default function Home() {
             <span className="text-purple-500">About</span> Me
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="bg-gradient-to-br from-purple-900/30 to-purple-600/10 p-8 rounded-2xl border border-purple-500/20">
+            <div className="bg-gradient-to-br from-purple-900/30 to-purple-600/10 p-8 rounded-2xl border border-purple-500/20" data-animate="fade-left">
               <p className="text-lg text-gray-300 leading-relaxed">
                 I'm a passionate full-stack developer with expertise in building modern web applications. I specialize in Next.js, React, TypeScript, and creating AI-powered solutions.
               </p>
@@ -102,16 +125,16 @@ export default function Home() {
                 Currently exploring the intersection of AI agents and web development, building tools that make development more efficient and enjoyable.
               </p>
             </div>
-            <div className="space-y-6">
-              <div className="bg-zinc-900/50 p-6 rounded-xl">
+            <div className="space-y-6" data-animate="fade-right">
+              <div className="bg-zinc-900/50 p-6 rounded-xl border border-zinc-800">
                 <h3 className="text-xl font-semibold text-purple-400 mb-2">Development</h3>
                 <p className="text-gray-400">Building scalable web applications with modern frameworks</p>
               </div>
-              <div className="bg-zinc-900/50 p-6 rounded-xl">
+              <div className="bg-zinc-900/50 p-6 rounded-xl border border-zinc-800">
                 <h3 className="text-xl font-semibold text-purple-400 mb-2">AI Integration</h3>
                 <p className="text-gray-400">Creating intelligent agents and automation systems</p>
               </div>
-              <div className="bg-zinc-900/50 p-6 rounded-xl">
+              <div className="bg-zinc-900/50 p-6 rounded-xl border border-zinc-800">
                 <h3 className="text-xl font-semibold text-purple-400 mb-2">DevOps</h3>
                 <p className="text-gray-400">Deploying and managing applications on cloud platforms</p>
               </div>
@@ -127,10 +150,12 @@ export default function Home() {
             My <span className="text-purple-500">Skills</span>
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {skills.map((skill) => (
-              <div key={skill.name} className="bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800 hover:border-purple-500/50 transition-colors group">
-                <skill.icon className="w-12 h-12 text-purple-500 mb-6 group-hover:scale-110 transition-transform" />
-                <h3 className="text-2xl font-bold mb-4">{skill.name}</h3>
+            {skills.map((skill, index) => (
+              <div key={skill.name} className="skill-card bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800 hover:border-purple-500/50 transition-all group" data-animate="stagger" data-animate-delay={index}>
+                <div className="icon-wrapper">
+                  <skill.icon className="w-12 h-12 text-purple-500" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 group-hover:text-purple-500 transition-colors">{skill.name}</h3>
                 <ul className="space-y-2">
                   {skill.items.map((item) => (
                     <li key={item} className="text-gray-400 flex items-center gap-2">
@@ -153,7 +178,7 @@ export default function Home() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <div key={index} className="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 hover:border-purple-500/50 transition-all hover:-translate-y-2 group">
+              <div key={index} className="project-card bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 hover:border-purple-500/50 transition-all group" data-animate="stagger" data-animate-delay={index + 3}>
                 <div className="mb-4">
                   <Code2 className="w-10 h-10 text-purple-500" />
                 </div>
