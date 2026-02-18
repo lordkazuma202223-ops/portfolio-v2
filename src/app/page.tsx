@@ -45,14 +45,14 @@ export default function Home() {
     }
   ]
 
-  // Generate random positions for particles
-  const particles = [...Array(50)].map((_, i) => ({
+  // Generate 80 particles for more visible effect
+  const particles = [...Array(80)].map((_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    size: 10 + Math.random() * 20,
-    duration: 15 + Math.random() * 15,
-    delay: Math.random() * 5
+    size: 8 + Math.random() * 24, // 8-32px particles
+    duration: 12 + Math.random() * 12, // 12-24s animation
+    delay: Math.random() * 10
   }))
 
   return (

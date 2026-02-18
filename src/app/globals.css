@@ -110,42 +110,14 @@
   75% { transform: translate(-10px, -10px); }
 }
 
-.floating-particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -5;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(155, 89, 182, 0.4);
-  animation: floatParticle 20s ease-in-out infinite;
-  width: 8px;
-  height: 8px;
-  box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
-}
-
-@keyframes floatParticle {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(10px, -15px); }
-  50% { transform: translate(-5px, 10px); }
-  75% { transform: translate(-8px, -5px); }
-}
-
 .aurora-effect {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -3;
-  background: radial-gradient(circle at 50% 50%, rgba(155, 89, 182, 0.1) 0%, transparent 70%);
+  z-index: -6;
+  background: radial-gradient(circle at 50% 50%, rgba(155, 89, 182, 0.08) 0%, transparent 70%);
   filter: blur(60px);
   animation: aurora 10s ease-in-out infinite alternate;
 }
@@ -161,9 +133,39 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -4;
   opacity: 0.03;
   pointer-events: none;
+}
+
+/* Floating Particles - Much more visible */
+.floating-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5; /* ABOVE all content */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(155, 89, 182, 0.6); /* More opacity */
+  width: 12px; /* Larger size */
+  height: 12px;
+  box-shadow: 0 0 20px rgba(155, 89, 182, 0.5); /* Stronger glow */
+  filter: blur(1px); /* Slight blur for glow effect */
+  animation: floatParticle 15s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(15px, -20px); }
+  50% { transform: translate(-8px, 18px); }
+  75% { transform: translate(-12px, -10px); }
 }
 
 /* Scroll Animations */
